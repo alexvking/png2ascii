@@ -32,5 +32,6 @@ png2ascii was designed for speed, which is a large reason why it was written in 
 ### Version History
 0.6.0
 - Added alpha channel support
+
 0.5.0
 - Initial release
