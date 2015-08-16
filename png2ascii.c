@@ -38,8 +38,6 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
     
     for (x = 0; x < (width * height * 4); x+=4) {
         /* Compute relative luminance of RGB value */
-        // printf("Fourth value is %u\n", image[x + 3]);
-
         brightness = (0.2126*image[x] +
                        0.7152*image[x + 1] +
                        0.0722*image[x + 2]) / 255;
