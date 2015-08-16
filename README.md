@@ -21,7 +21,7 @@ Good question. It's not like tools like this are hard to find, but it *is* hard 
   
 
 ### Performance
-png2ascii was tuned for speed, which is a large reason why it was written in C. KCachegrind was used to squeeze as much performance out of the tool as possible. png2ascii is fast, converting a 10MP, 10.6MB PNG into ASCII in just over 1 second on an Intel Core M processor. Compare that to *45 seconds* for a comparable conversion with a Python utility. Though there's little reason you'd ever need to produce a single image that large, png2ascii can be used to batch convert frames to produce cool ASCII GIFs.
+png2ascii was designed for speed, which is a large reason why it was written in C. KCachegrind was used to squeeze as much performance out of the tool as possible. png2ascii is fast, converting a 10MP, 10.6MB PNG into ASCII in just over 1 second on an Intel Core M processor. Compare that to *45 seconds* for a comparable conversion with a Python utility. Though there's little reason you'd ever need to produce a single image that large, png2ascii can be used to batch convert frames to produce cool ASCII GIFs.
 
 ### Usage
 
