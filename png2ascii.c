@@ -11,7 +11,7 @@
 
 #include "lodepng.h"
 
-#define NUM_ART_CHARS 9
+#define NUM_ART_CHARS 10
 
 /* Converts specified PNG file and returns a pointer to converted ASCII image */
 unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
@@ -23,8 +23,8 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
     char *art_chars;
     int x, index;
     
-    /* Sets image as buffer with pattern RGBRGBRGB */
-    error = lodepng_decode24_file(&image, &width, &height, filename);
+    /* Sets image as buffer with pattern RGBARGBARGBA */
+    error = lodepng_decode32_file(&image, &width, &height, filename);
     
     if (error) {
         printf("PNG decoder error %u: %s\n", error, lodepng_error_text(error));
@@ -36,14 +36,17 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
     *input_width = width;
     *input_height = height;
     
-    for (x = 0; x < (width * height * 3); x+=3) {
+    for (x = 0; x < (width * height * 4); x+=4) {
         /* Compute relative luminance of RGB value */
-        brightness = ((0.2126*image[x] +
+        // printf("Fourth value is %u\n", image[x + 3]);
+
+        brightness = (0.2126*image[x] +
                        0.7152*image[x + 1] +
-                       0.0722*image[x + 2])) / 255;
-        /* Set pixel in output to be nearest ASCII character to brightness */
-        index = brightness * NUM_ART_CHARS;
-        output[x/3] = art_chars[index];
+                       0.0722*image[x + 2]) / 255;
+        /* Set pixel in output to be nearest ASCII character to brightness. 
+           If alpha channel is transparent, set pixel as whitespace */
+        index = (image[x + 3] ? brightness * (NUM_ART_CHARS - 1) : 9);
+        output[x/4] = art_chars[index];
     }
     free(image);
     return output;
@@ -54,7 +57,7 @@ void print_ascii_image(unsigned char* output, int width, int height)
 {
     char buffer[(2 * width) + 1];
     int x, y;
-    for (y = 0; y < (height * width); y += height) {
+    for (y = 0; y < (height * width); y += width) {
         /* Only call printf once per row, cutting runtime by two thirds */
         for (x = 0; x < width; x++) {
             buffer[2 * x] = output[y + x];
