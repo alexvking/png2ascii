@@ -27,7 +27,7 @@ png2ascii was designed for speed, which is a large reason why it was written in 
 
 - Run <code>make</code> at the command line to build the project with GCC.
 - png2ascii expects a PNG file as its only argument and outputs the ASCII image to stdout.
-    - Images with a width greater than 100 pixels or so will be very large. It's easy to resize any image to the perfect size with ImageMagick's <code>convert</code>: <code>convert img.png -resize 200x100 out.png ; ./png2ascii out.png > out.txt</code>
+- Images with a width greater than 100 pixels or so will be very large. It's easy to resize any image to the perfect size with ImageMagick's <code>convert</code>: <code>convert img.png -resize 200x100 out.png ; ./png2ascii out.png > out.txt</code>
 
 ### Version History
 0.6.0
