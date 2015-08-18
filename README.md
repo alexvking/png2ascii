@@ -27,7 +27,7 @@ Good question. It's not like tools like this are hard to find, but it *is* hard 
 
 - Run <code>make</code> at the command line to build the project with GCC.
 - *png2ascii* expects a PNG file as its only argument and outputs the ASCII image to stdout.
-- Images with a width greater than 100 pixels or so will be very large. It's easy to resize any image to the perfect size with ImageMagick's <code>convert</code>: <code>convert img.png -resize 80x80 out.png ; ./png2ascii out.png > out.txt</code>. True <code>|</code>code> isn't yet supported, because I'm not certain that LodePNG supports reading a PNG from stdin. I'm working on it.
+- Images with a width greater than 100 pixels or so will be very large. It's easy to resize any image to the perfect size with ImageMagick's <code>convert</code>: <code>convert img.png -resize 80x80 out.png ; ./png2ascii out.png > out.txt</code>. True <code>|</code> piping isn't yet supported, because I'm not certain that LodePNG supports reading a PNG from stdin. I'm working on it.
 
 ### Version History
 
