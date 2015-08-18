@@ -1,4 +1,4 @@
-# png2ascii: lightning fast ASCII image generator
+# png2ascii: A lightning fast ASCII image generator
 
 <img src="screenshots/title.png">
 
