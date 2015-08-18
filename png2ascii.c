@@ -36,15 +36,15 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
     *input_width = width;
     *input_height = height;
     
-    for (x = 0; x < (width * height * 4); x+=4) {
+    for (x = 0; x < (width * height * 4); x += 4) {
         /* Compute relative luminance of RGB value */
-        brightness = (0.2126*image[x] +
-                       0.7152*image[x + 1] +
-                       0.0722*image[x + 2]) / 255;
+        brightness = (0.2126 * image[x]      +
+                      0.7152 * image[x + 1]  +
+                      0.0722 * image[x + 2]) / 255;
         /* Set pixel in output to be nearest ASCII character to brightness. 
            If alpha channel is transparent, set pixel as whitespace */
         index = (image[x + 3] ? brightness * (NUM_ART_CHARS - 1) : 9);
-        output[x/4] = art_chars[index];
+        output[x / 4] = art_chars[index];
     }
     free(image);
     return output;
@@ -68,8 +68,8 @@ void print_ascii_image(unsigned char* output, int width, int height)
 
 int main(int argc, const char *argv[]) {
     if (argc != 2) {
-        printf("Usage: png2ascii filename.png\n");
-        exit(1);
+        printf("Usage: ./png2ascii filename.png\n");
+        return 1;
     }
     unsigned width, height;
     unsigned char *output = png_to_ascii(argv[1], &width, &height);
