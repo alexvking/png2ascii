@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "lodepng.h"
 
 #define NUM_ART_CHARS 10
@@ -20,8 +19,8 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
     unsigned char *image, *output;
     unsigned width, height, error;
     float brightness;
-    char *art_chars;
     int x, index;
+    char *art_chars = "@%#*+=-:. "; /* ASCII char range, darkest to lightest */
     
     /* Sets image as buffer with pattern RGBARGBARGBA */
     error = lodepng_decode32_file(&image, &width, &height, filename);
@@ -31,8 +30,8 @@ unsigned char* png_to_ascii(const char* filename, unsigned* input_width,
         printf("Error opening specified file. Exiting...\n");
         exit(1);
     }
+
     output = malloc(width * height * sizeof(char));
-    art_chars = "@%#*+=-:. ";
     *input_width = width;
     *input_height = height;
     
